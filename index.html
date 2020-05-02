@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+        
+    <script src="BFS.js"></script>
+    <link rel="stylesheet" href="style.css"> 
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body class="" ondragstart="return false;" ondrop="return false;">
+   
+    <div id="counter" style="display: none; position: absolute;">-1</div>
+    <div id="num" style="display: none; position: absolute;">1</div>
+
+    
+    
+    <div id="sidebar">
+    
+<button onclick="draw()" style="width: 300px; margin-left: 25px; margin-top: 20px; margin-bottom: 450px;" class="main btn btn-info btn-rounded btn-sm waves-effect waves-light">Draw Tree</button>
+<p id="speedtext">Speed</p>
+<input type="range" min="1" max="30" value="10" class="slider main" id="speed" >
+
+<button onclick="bfs()" class="type main" style="margin-left: 24px;">BFS</button>
+<button onclick="dfs()" class="type main">DFS</button><br>
+
+<button onclick="cancel()" style="margin-left: 24px;" id="cancle" class="edit   type" >Done</button>
+<button onclick="delete_tree()"  class="edit type">Clear</button>
+
+</div>
+<div id="area" class="body">
+    
+    <img width="600px" src="./grid.png" alt="" class="body">
+</div>
+
+
+
+<p id="x1" class="data"></p>
+<p id="x2" class="data"></p>
+<p id="y1" class="data"></p>
+<p id="y2" class="data"></p>
+<div id="topbar">DFS And BFS Visualization</div>
+
+</body>
+
+</html>
