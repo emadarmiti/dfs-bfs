@@ -122,8 +122,8 @@ function addNode(event) {
     document.getElementById('counter').innerHTML=Number(num)+1;
 
 
-    newDiv.style.left = event.clientX-387-23+"px";
-    newDiv.style.top = event.clientY-23-23+"px";        
+    newDiv.style.left = event.clientX-387+"px";
+    newDiv.style.top = event.clientY-23+"px";        
     document.getElementsByClassName('body')[0].appendChild(newDiv);
     }
     else{
