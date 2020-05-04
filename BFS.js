@@ -7,8 +7,8 @@ function add_eadge(){
     var y2=Number(document.getElementById("y1").innerHTML);
 
     if(x1!=x2 && y1!=y2){
-    node2=document.elementFromPoint(x1+410, y1+30);
-    node1=document.elementFromPoint(x2+410, y2+30);
+    node2=document.elementFromPoint(x1+387, y1+23);
+    node1=document.elementFromPoint(x2+387, y2+23);
     
     
     
@@ -46,9 +46,14 @@ function add_eadge(){
     var line = document.createElement("div"); 
     
     
-    var att = document.createAttribute("line");      
+    var att1 = document.createAttribute("line");      
+    att1.value = '0';                        
+    line.setAttributeNode(att1); 
+
+    var att = document.createAttribute("temp");      
     att.value = node2.id;                        
     line.setAttributeNode(att); 
+
 
     line.className="line";      
     line.style.width=distance+"px";
@@ -69,14 +74,14 @@ function target_line(event){
     nodes=document.getElementsByClassName('node');
 
     for (let i = 0; i < nodes.length; i++) {
-    nodes[i].style.border="3px solid #2b5841";
+    nodes[i].style.border="3px solid #3d3d3d";
     nodes[i].style.backgroundColor ="#f5f5f5";
     
     }
     if (event.target.className!="body") {
     
-    document.getElementById("x2").innerHTML = event.clientX-410;
-    document.getElementById("y2").innerHTML = event.clientY-30;
+    document.getElementById("x2").innerHTML = event.clientX-387;
+    document.getElementById("y2").innerHTML = event.clientY-23;
     if(event.clientY!=document.getElementById("y1").innerHTML&&event.clientX!=document.getElementById("x1").innerHTML)
     add_eadge();
 
@@ -88,8 +93,8 @@ function target_line(event){
 
 function addNode(event) {
   
-    document.getElementById("x1").innerHTML = event.clientX-410;
-    document.getElementById("y1").innerHTML = event.clientY-30;
+    document.getElementById("x1").innerHTML = event.clientX-387;
+    document.getElementById("y1").innerHTML = event.clientY-23;
 
     if (event.target.className=="body") {
     num=document.getElementById("counter").innerHTML;
@@ -111,13 +116,14 @@ function addNode(event) {
     att3.value = Number(num)+1+"";                       
     newDiv.setAttributeNode(att3); 
 
+    if (Number(num)+1>9)newDiv.style.padding="10px 12px";
 
     newDiv.innerHTML=Number(num)+1+"";
     document.getElementById('counter').innerHTML=Number(num)+1;
 
 
-    newDiv.style.left = event.clientX-410-23+"px";
-    newDiv.style.top = event.clientY-30-23+"px";        
+    newDiv.style.left = event.clientX-387-23+"px";
+    newDiv.style.top = event.clientY-23-23+"px";        
     document.getElementsByClassName('body')[0].appendChild(newDiv);
     }
     else{
@@ -143,8 +149,13 @@ function addNode(event) {
 
 
 function draw() {
+
+    console.log(document.body.style.width);
+    
+
+
     document.getElementsByTagName('img')[0].style.display='block';
-        document.getElementsByClassName('body')[0].style.cursor="url('./node.png'),auto";
+    document.getElementsByClassName('body')[0].style.cursor="url('./node.png'),auto";
 
     array=document.getElementsByClassName("edit");
     for (let i = 0; i < array.length; i++) {
@@ -161,41 +172,84 @@ function draw() {
 
 }
 
+
+
 function cancel() {
-        document.getElementsByTagName('img')[0].style.display='none';
+     
+     
+    document.getElementById('speed').style.marginTop="540px"
+    document.getElementById('speed').style.marginLeft="100px"
+    document.getElementById('speed').style.position="absolute"
+    document.getElementsByTagName('img')[0].style.display='none';
+    document.getElementsByClassName('body')[0].style.cursor="auto";
+    array=document.getElementsByClassName("edit");
+    for (let i = 0; i < array.length; i++)array[i].style.display="none";
+    array=document.getElementsByClassName("main");
+    for (let i = 0; i < array.length; i++)array[i].style.display="inline";
+    document.getElementById('speedtext').style.display='block';
+    document.removeEventListener("mousedown", addNode);
+    document.removeEventListener("mouseup", target_line);
 
-        document.getElementsByClassName('body')[0].style.cursor="auto";
+    
 
-        document.getElementById("sidebar").style.opacity="1";
-     array=document.getElementsByClassName("edit");
+
+}
+
+function finish() {
+    
+     document.getElementById('num').innerHTML="1";
+    nodes=document.getElementsByClassName("node");
+    for (let i = 0; i < nodes.length; i++) {
+        nodes[i].getAttributeNode("num").value='0';
+        nodes[i].getAttributeNode("flag").value='f';
+        nodes[i].innerHTML= nodes[i].getAttributeNode("label").value;
+        nodes[i].style.border="3px solid #3d3d3d";
+        nodes[i].style.backgroundColor ='#f5f5f5';
+        nodes[i].style.color ="#3d3d3d";
+        
+    }
+    
+    
+    lines=document.getElementsByClassName('line');
+
+    for (let i = 0; i < lines.length; i++) {
+       lines[i].style.border="none";
+       lines[i].style.backgroundColor ="#3d3d3d";
+    
+    }
+
+
+  array=document.getElementsByClassName("main");
+    for (let i = 0; i < array.length; i++) {
+         if (array[i].id!="speed")array[i].style.display="inline";
+        
+    }
+     array=document.getElementsByClassName("run");
     for (let i = 0; i < array.length; i++) {
         array[i].style.display="none";
         
     }
-  
- array=document.getElementsByClassName("main");
-    for (let i = 0; i < array.length; i++) {
-        array[i].style.display="inline";
-        
-    }
-        document.getElementById('speedtext').style.display='block';
-
-    document.getElementById('speed').style.display='block';
-     document.removeEventListener("mousedown", addNode);
-     document.removeEventListener("mouseup", target_line);
+        document.getElementById('speed').style.marginTop="540px"
+        document.getElementById('speed').style.marginLeft="100px"
+        document.getElementById('speed').style.position="absolute"
+        document.getElementById('speedtext').style.marginTop="530px"
 }
-
 function bfs(){
+
+    hideMain() ;
+   
+  
+
     nodes=document.getElementsByClassName('node');
     lines=document.getElementsByClassName('line');
     for (let i = 0; i < nodes.length; i++) {
-    nodes[i].style.border="3px solid #2b5841";
+    nodes[i].style.border="3px solid #3d3d3d";
     nodes[i].style.backgroundColor ='#f5f5f5';
-     nodes[i].style.color ="#2b5841";
+     nodes[i].style.color ="#3d3d3d";
     }   
     for (let i = 0; i < lines.length; i++) {
     lines[i].style.border="none";
-    lines[i].style.backgroundColor ="#2b5841";
+    lines[i].style.backgroundColor ="#3d3d3d";
     
     }
     nodes=document.getElementsByClassName('node');
@@ -206,14 +260,46 @@ function bfs(){
     
 
 function dfs() {
+  
+ hideMain() ;
 
     findNodesDFS('0');
+  root=document.getElementsByClassName('node')[0];
+    root.style.border="3px solid #fa7661";
+    root.style.backgroundColor ="#fa7661";
+    root.style.color ="white";
+    root.innerHTML='R';
+
+
+    label=root.getAttributeNode('label').value;
+    var nodes = document.querySelectorAll(`*[id^="${label}"]`);
+
+    var parent = document.createElement("p");  
+    parent.className="parent";  
+    parent.innerHTML="DFS(Root)";
+    document.getElementById('tracking_code').appendChild(parent);
     
-    document.querySelector(`[num="1"]`).style.border="3px solid #fa7661";
-    document.querySelector(`[num="1"]`).style.backgroundColor ="#fa7661";
-    document.querySelector(`[num="1"]`).style.color ="white";
-    document.querySelector(`[num="1"]`).innerHTML='R';
+    
+    var children = document.createElement("p");  
+    children.className="children";  
+    var children_text = document.createElement("span");
+      children_text.innerHTML="Children :";
+      children.appendChild(children_text);
+    for (let i = 1; i < nodes.length; i++) {
+        
+    var span = document.createElement("span"); 
+    span.className="child";
+    span.id=`child${nodes[i].getAttributeNode('label').value}`;
+    span.innerHTML=nodes[i].getAttributeNode('label').value;
+    children.appendChild(span);
+    } 
+    document.getElementById('tracking_code').appendChild(children);
+
+
+
     myLoop1(2,3);
+
+    
 }
 
 function findNodesDFS(id_) {
@@ -222,7 +308,7 @@ function findNodesDFS(id_) {
     document.getElementById(id_).getAttributeNode("num").value=num;
 
     if(id_!='0'){
-    line=document.querySelectorAll(`[line="${id_}"]`)[0];
+    line=document.querySelectorAll(`[temp="${id_}"]`)[0];
     line.getAttributeNode('line').value=Number(num)+1;}
 
     document.getElementById('num').innerHTML=Number(num)+1;
@@ -250,7 +336,14 @@ function myLoop1( t ,e) {
 
   setTimeout(function() {  
       
-    
+
+
+
+
+
+
+
+
     if(t!=2){
 
         document.querySelector(`[line="${e-1}"]`).style.backgroundColor ="#fa7661";
@@ -261,15 +354,97 @@ function myLoop1( t ,e) {
         document.querySelector(`[num="${t-1}"]`).style.color ="white";
         document.querySelector(`[num="${t-1}"]`).style.border="4px solid #fa7661"
 
+        label=document.querySelector(`[num="${t-1}"]`).getAttributeNode('label').value;
+        document.getElementById(`child${label}`).className="visited";
+
+        parent_none=document.getElementsByClassName("parent_none");
+    if (parent_none.length!=0) {
+      arrow=document.getElementsByClassName("fa fa-long-arrow-down");
+      document.getElementById('tracking_code').removeChild(arrow[arrow.length-1]);
+
+     document.getElementById('tracking_code').removeChild(parent_none[0]);
+
     }
 
+
+                     childrens=document.getElementsByClassName('children');
+while(true){
+          
+        if (childrens[childrens.length-1].lastChild.className=="visited") {
+            
+            arrow=document.getElementsByClassName("fa fa-long-arrow-down");
+            lastparent=document.getElementsByClassName('parent');
+            if (arrow.length!=0)document.getElementById('tracking_code').removeChild(arrow[arrow.length-1]);
+            document.getElementById('tracking_code').removeChild(lastparent[lastparent.length-1]);
+
+             document.getElementById('tracking_code').removeChild(childrens[childrens.length-1]);
+
+          
+          
+          
+       }
+       else
+       { break;}
+}
+
+        }
+    
+    
+
    if(e < document.getElementsByClassName('line').length+3){
+
+        
+        label=document.querySelector(`[num="${t}"]`).getAttributeNode('label').value;
+        
+        var arrow = document.createElement("h1"); 
+            arrow.className="fa fa-long-arrow-down";
+            document.getElementById('tracking_code').appendChild(arrow);
+        var nodes = document.querySelectorAll(`*[id^="${label}"]`);
+        var parent = document.createElement("p");  
+        parent.className="parent"; 
+        parent.id=label; 
+        parent.innerHTML=`DFS(${label})`;
+        document.getElementById('tracking_code').appendChild(parent);
+        document.getElementById(`child${label}`).className="current";
+        if(nodes.length!=0){
+
+          var children = document.createElement("p");  
+          children.className="children";
+          
+          var children_text = document.createElement("span");
+          children_text.innerHTML="Children :";
+          children.appendChild(children_text);
+
+            for (let i = 0; i < nodes.length; i++) {
+        
+            var span = document.createElement("span"); 
+            span.className="child";
+            span.className+=` child${label}`;
+            span.id+=`child${nodes[i].getAttributeNode('label').value}`;
+            span.innerHTML=nodes[i].getAttributeNode('label').value;
+            children.appendChild(span);
+                              } 
+            document.getElementById('tracking_code').appendChild(children);
+
+            
+
+        }
+        else{
+          parent.className="parent_none";
+          
+        
+
+        }
+
+
+
+
+
     document.querySelector(`[line="${e}"]`).style.backgroundColor ="#e7d9be";
     document.querySelector(`[line="${e}"]`).style.height ="8px";
-
     document.querySelector(`[num="${t}"]`).style.backgroundColor ="#f5f5f5";
-     document.querySelector(`[num="${t}"]`).style.color ="#fa7661";
-     document.querySelector(`[num="${t}"]`).style.border="4px solid #fa7661";
+    document.querySelector(`[num="${t}"]`).style.color ="#fa7661";
+    document.querySelector(`[num="${t}"]`).style.border="4px solid #fa7661";
   }
    
    
@@ -279,7 +454,24 @@ function myLoop1( t ,e) {
                   
     if (t < document.getElementsByClassName('node').length+1) {           
       myLoop1(t+1,e+1);           
-    }                      
+    } 
+    else{
+       childrens=document.getElementsByClassName('children');
+            lastparent=document.getElementsByClassName('parent');
+     arrow=document.getElementsByClassName("fa fa-long-arrow-down");
+              for (let i = 0; i < arrow.length; i) {
+             document.getElementById('tracking_code').removeChild(0);
+                
+              }
+            for (let i = 0; i < childrens.length; i) {
+             
+            document.getElementById('tracking_code').removeChild(lastparent[i]);
+
+             document.getElementById('tracking_code').removeChild(childrens[i]);
+
+            }
+           
+    }                   
   }, speed*100)
 }
 
@@ -338,7 +530,7 @@ function myLoop( t ,e,nodes,lines) {
 function delete_tree() {
     
     document.getElementById("counter").innerHTML=-1;
-
+    document.getElementById("num").innerHTML=1;
     nodes=document.getElementsByClassName('node');
     lines=document.getElementsByClassName('line');
 
@@ -354,3 +546,18 @@ function delete_tree() {
     }
 }
 
+function hideMain() {
+    array=document.getElementsByClassName("main");
+    for (let i = 0; i < array.length; i++) {
+          if (array[i].id!="speed")array[i].style.display="none";
+        
+    }
+     array=document.getElementsByClassName("run");
+    for (let i = 0; i < array.length; i++) {
+        array[i].style.display="block";
+        
+    }
+    document.getElementById('speed').style.marginLeft="100px"
+    document.getElementById('speed').style.marginTop="540px"
+    document.getElementById('speedtext').style.marginTop="535px"
+}

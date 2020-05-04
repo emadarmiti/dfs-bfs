@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="style.css"> 
         <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+    <title>DFS & BFS</title>
 </head>
 
 <body class="" ondragstart="return false;" ondrop="return false;">
@@ -18,21 +19,48 @@
     
     
     <div id="sidebar">
-    
-<button onclick="draw()" style="width: 300px; margin-left: 25px; margin-top: 20px; margin-bottom: 450px;" class="main btn btn-info btn-rounded btn-sm waves-effect waves-light">Draw Tree</button>
-<p id="speedtext">Speed</p>
-<input type="range" min="1" max="30" value="10" class="slider main" id="speed" >
+        <div class="run" id="tracking_code">
+            <p id="header" >Recursive Approach</p>
 
-<button onclick="bfs()" class="type main" style="margin-left: 24px;">BFS</button>
-<button onclick="dfs()" class="type main">DFS</button><br>
+          
+           
+        
 
-<button onclick="cancel()" style="margin-left: 24px;" id="cancle" class="edit   type" >Done</button>
+
+        </div>
+        <div id="intro" class="main">
+
+            <p >DFS and BFS Visualization</p>
+        </div>
+        <div class="edit draw_text" >
+            <p style="text-transform: uppercase;">instructions</p>
+
+            <h1 class="fa fa-arrow-down" style="font-size:25px; color: rgb(255, 255, 255)"></h1>
+
+            <p style="background-color: transparent; color:#f5f5f5; ">Draw the tree's nodes level by level, starting from left to right</p>
+        </div>
+
+<p id="speedtext" style="margin-top: 530px">Speed</p>
+
+<input type="range" min="1" max="30" value="10" class="slider main" id="speed"  style="margin-top: 535px">
+<button onclick="finish()" class="run "  style="width: 300px; margin-left: 25px; margin-top: 590px;">Cancel</button>
+
+<button onclick="bfs()" class="type main" style="margin-left: 24px; margin-top: 500px;  ">BFS</button>
+<button onclick="dfs()" class="type main"  style="margin-top: 590px">DFS</button><br>
+
+
+
+<button onclick="cancel()" style="margin-left: 24px; margin-top: 108%;" id="cancle" class="edit   type" >Done</button>
 <button onclick="delete_tree()"  class="edit type">Clear</button>
-
 </div>
-<div id="area" class="body">
-    
+<div id="area" class="body" >
+    <button onclick="draw()" style="width: 300px; margin-left: 25px; margin-top: 20px; margin-bottom: 450px;" id="draw" class="main btn btn-info btn-rounded btn-sm waves-effect waves-light">Draw Tree</button>
+
     <img width="600px" src="./grid.png" alt="" class="body">
+    <p style="margin-top:56%; color: #3d3d3df8;" class="edit" ><i class="fa fa-circle-o" aria-hidden="true">&nbsp;&nbsp;To create a node, click anywhere on the grid area</i></p>
+    <p style=" color: #3d3d3df8;" class="edit"><i class="fa fa-expand" aria-hidden="true">&nbsp;&nbsp;To create an edge, click on the parent node, keep holding the mouse and then release it on its child
+    </i></p>
+
 </div>
 
 
@@ -41,7 +69,8 @@
 <p id="x2" class="data"></p>
 <p id="y1" class="data"></p>
 <p id="y2" class="data"></p>
-<div id="topbar">DFS And BFS Visualization</div>
+<div id="bottombar">&copy; 2020 Emad Armiti</div>
+
 
 </body>
 
