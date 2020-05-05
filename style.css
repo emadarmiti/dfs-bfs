@@ -124,6 +124,7 @@ body ,html{
    transition:  .4s;
  }
  #speed{
+   margin-top: 150%;
 border-radius: 10px;
     position: absolute;
 
@@ -306,7 +307,8 @@ margin-top: 48%;
        transition: 0.3s;
        border-radius: 26px 26px 26px 26px;
        position: absolute;
-       top: 25%;
+       margin-top: 55%;
+
        left: 40%;
        width: 20%;
        box-shadow: 0 0 10px rgba(0,0,0,0.6);
