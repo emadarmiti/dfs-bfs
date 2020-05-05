@@ -69,7 +69,7 @@ body ,html{
     cursor: pointer;
    margin: auto;
    display: block;
-   margin-top: 150px;
+  
     
     transition: 0.3s;
     border-radius: 26px 26px 26px 26px;
@@ -109,7 +109,7 @@ body ,html{
  }
  .type{
    width: auto;
- margin-top: 80px;
+ 
   display: inline;
   padding-left: 63px;
   padding-right: 63px;
@@ -126,7 +126,7 @@ body ,html{
  #speed{
 border-radius: 10px;
     position: absolute;
-margin-top: 30px;
+
 margin-left: 100px;
 border: 1px solid black;
    
@@ -138,7 +138,7 @@ border: 1px solid black;
     background:#252525; 
     outline: none;
     position: absolute;
-    margin-top: 400px;
+    
     margin-left: 10px;
    cursor: pointer;
     transition:  .4s;
