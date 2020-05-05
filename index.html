@@ -19,14 +19,59 @@
     
     
     <div id="sidebar">
-        <div class="run" id="tracking_code">
+        <div class="run bfs" id="tracking_code1">
+            <p id="header" >Iterative Approach</p>
+            <h1 class="fa fa-arrow-down" style="font-size:25px; color: rgb(255, 255, 255)"></h1>
+
+            <pre >
+                <span>create a queue Q</span>
+	        <span>mark v as visited and put v into Q </span>
+                <span>while Q is non-empty:</span>
+                <span>----- remove the head u of Q </span>
+                <span>----- mark and enqueue all</span> 
+                 <span>      (unvisited) neighbours of u</span></pre>
+                <h1 class="fa fa-arrow-down" style="margin-top: 5%; margin-bottom: 5%; font-size:25px;"></h1>
+
+                <div id="tracking_bfs">
+                    <div id="queue">
+                        <h3>Queue</h3>
+                        <table  id="queue_table">
+                           
+                            
+                        </table>
+                    </div>
+                    <div id="visited">
+                        <h3>Visited</h3>
+                         <table id="visited_table">
+                            
+                        </table>
+                    </div>
+                </div>
+
+                <h3 id="result_bfs">
+                    Nodes order :  
+                   
+                </h3>
+      
+
+
+</div>
+        <div class="run dfs" id="tracking_code">
             <p id="header" >Recursive Approach</p>
+            <h1 class="fa fa-arrow-down" style="font-size:25px; color: rgb(255, 255, 255)"></h1>
 
-          
+            <pre >
+                <span>dfs(node):</span>
+	        <span>-- if node is not a leaf :</span>
+                <span>----- for each child of nodes' children:</span>
+                <span>--------- dfs(child)</span></pre>
            
-        
+                <h1 class="fa fa-arrow-down" style="margin-top: 5%; margin-bottom: 5%; font-size:25px;"></h1>
 
-
+                <h3 id="result_dfs">
+                    Nodes order :  
+                   
+                </h3>
         </div>
         <div id="intro" class="main">
 
@@ -40,21 +85,22 @@
             <p style="background-color: transparent; color:#f5f5f5; ">Draw the tree's nodes level by level, starting from left to right</p>
         </div>
 
-<p id="speedtext" style="margin-top: 60%">Speed</p>
+<p id="speedtext" >Speed</p>
 
-<input type="range" min="1" max="30" value="10" class="slider main" id="speed"  style="margin-top: 60%">
-<button onclick="finish()" class="run "  style="width: 300px; margin-left: 25px; margin-top: 590px;">Cancel</button>
+<input type="range" min="1" max="30" value="10" class="slider main" id="speed"  style="margin-top: 535px">
 
-<button onclick="bfs()" class="type main" style="margin-left: 24px;   ">BFS</button>
-<button onclick="dfs()" class="type main"  style="margin-top: 60%">DFS</button><br>
-
+<button onclick="bfs()" class="type main" style=" margin-top: 160%; margin-left: 7%;">BFS</button>
+<button onclick="dfs()" class="type main">DFS</button><br>
 
 
-<button onclick="cancel()" style="margin-left: 24px; margin-top: 108%;" id="cancle" class="edit   type" >Done</button>
+
+<button onclick="cancel()" s id="cancel" class="edit   type" >Done</button>
 <button onclick="delete_tree()"  class="edit type">Clear</button>
 </div>
 <div id="area" class="body" >
-    <button onclick="draw()" style="width: 300px; margin-left: 25px; margin-top: 20px; margin-bottom: 450px;" id="draw" class="main btn btn-info btn-rounded btn-sm waves-effect waves-light">Draw Tree</button>
+    <button onclick="finish()" class="run dfs bfs"  id="finish" >Cancel</button>
+
+    <button onclick="draw()" style="" id="draw" class="main">Draw Tree</button>
 
     <img width="600px" src="./grid.png" alt="" class="body">
     <p style="margin-top:56%; color: #3d3d3df8;" class="edit" ><i class="fa fa-circle-o" aria-hidden="true">&nbsp;&nbsp;To create a node, click anywhere on the grid area</i></p>

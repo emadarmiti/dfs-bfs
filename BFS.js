@@ -177,7 +177,10 @@ function draw() {
 function cancel() {
      
      
-    document.getElementById('speed').style.marginTop="540px"
+    document.getElementById('speed').style.marginTop="150%"
+        document.getElementById('speedtext').style.marginTop="-23%"
+            document.getElementById('speedtext').style.display="block";
+
     document.getElementById('speed').style.marginLeft="100px"
     document.getElementById('speed').style.position="absolute"
     document.getElementsByTagName('img')[0].style.display='none';
@@ -186,7 +189,7 @@ function cancel() {
     for (let i = 0; i < array.length; i++)array[i].style.display="none";
     array=document.getElementsByClassName("main");
     for (let i = 0; i < array.length; i++)array[i].style.display="inline";
-    document.getElementById('speedtext').style.display='block';
+
     document.removeEventListener("mousedown", addNode);
     document.removeEventListener("mouseup", target_line);
 
@@ -197,6 +200,20 @@ function cancel() {
 
 function finish() {
     
+
+     result_bfs=document.getElementsByClassName("result_dfs");
+    for (let i = 0; i < result_bfs.length; i) {
+      result_bfs[i].parentElement.removeChild(result_bfs[i])
+      
+    }
+    document.getElementById("result_dfs").style.display="none";
+    result_bfs=document.getElementsByClassName("result_bfs");
+    for (let i = 0; i < result_bfs.length; i) {
+      result_bfs[i].parentElement.removeChild(result_bfs[i])
+      
+    }
+    document.getElementById("result_bfs").style.display="none";
+
      document.getElementById('num').innerHTML="1";
     nodes=document.getElementsByClassName("node");
     for (let i = 0; i < nodes.length; i++) {
@@ -229,16 +246,20 @@ function finish() {
         array[i].style.display="none";
         
     }
-        document.getElementById('speed').style.marginTop="540px"
+        document.getElementById('speed').style.marginTop="150%"
         document.getElementById('speed').style.marginLeft="100px"
         document.getElementById('speed').style.position="absolute"
-        document.getElementById('speedtext').style.marginTop="530px"
+ document.getElementById('speedtext').style.marginTop="-23%"
+            document.getElementById('speedtext').style.display="block";
 }
 function bfs(){
 
-    hideMain() ;
+    hideMain1() ;
    
-  
+  table1=document.getElementById('queue');
+      table2=document.getElementById('visited');
+      table1.style.display="block";
+      table2.style.display="block";
 
     nodes=document.getElementsByClassName('node');
     lines=document.getElementsByClassName('line');
@@ -254,6 +275,28 @@ function bfs(){
     }
     nodes=document.getElementsByClassName('node');
     lines=document.getElementsByClassName('line');
+
+  nodes[0].style.backgroundColor ="#f5f5f5";
+    nodes[0].style.color ="#fa7661";
+   nodes[0].style.border="4px solid #fa7661";
+
+ var result = document.createElement("span");
+     result.innerHTML= '0';
+     result.className="result_bfs";
+     document.getElementById("result_bfs").appendChild(result);
+
+    var tr = document.createElement("tr"); 
+    var td=document.createElement("td");
+    td.className="current_block";
+    td.innerHTML="root";
+  
+    var id_ = document.createAttribute("id_");      
+    id_.value = '0';                        
+    td.setAttributeNode(id_); 
+    tr.appendChild(td);
+    document.getElementById('queue_table').appendChild(tr);
+
+
      myLoop( 0,1,nodes,lines); 
   
 }
@@ -261,15 +304,19 @@ function bfs(){
 
 function dfs() {
   
- hideMain() ;
+  hideMain() ;
 
     findNodesDFS('0');
-  root=document.getElementsByClassName('node')[0];
+    root=document.getElementsByClassName('node')[0];
     root.style.border="3px solid #fa7661";
     root.style.backgroundColor ="#fa7661";
     root.style.color ="white";
     root.innerHTML='R';
 
+    var result = document.createElement("span");
+     result.innerHTML= '0';
+     result.className="result_dfs";
+     document.getElementById("result_dfs").appendChild(result);
 
     label=root.getAttributeNode('label').value;
     var nodes = document.querySelectorAll(`*[id^="${label}"]`);
@@ -358,7 +405,7 @@ function myLoop1( t ,e) {
         document.getElementById(`child${label}`).className="visited";
 
         parent_none=document.getElementsByClassName("parent_none");
-    if (parent_none.length!=0) {
+      if (parent_none.length!=0) {
       arrow=document.getElementsByClassName("fa fa-long-arrow-down");
       document.getElementById('tracking_code').removeChild(arrow[arrow.length-1]);
 
@@ -368,9 +415,9 @@ function myLoop1( t ,e) {
 
 
                      childrens=document.getElementsByClassName('children');
-while(true){
+ while(true){
           
-        if (childrens[childrens.length-1].lastChild.className=="visited") {
+        if (childrens.length!=0 && childrens[childrens.length-1].lastChild.className=="visited") {
             
             arrow=document.getElementsByClassName("fa fa-long-arrow-down");
             lastparent=document.getElementsByClassName('parent');
@@ -385,7 +432,7 @@ while(true){
        }
        else
        { break;}
-}
+ }
 
         }
     
@@ -445,6 +492,14 @@ while(true){
     document.querySelector(`[num="${t}"]`).style.backgroundColor ="#f5f5f5";
     document.querySelector(`[num="${t}"]`).style.color ="#fa7661";
     document.querySelector(`[num="${t}"]`).style.border="4px solid #fa7661";
+    
+    
+    var result = document.createElement("span");
+     result.innerHTML=  document.querySelector(`[num="${t}"]`).getAttributeNode('label').value;
+     result.className="result_dfs";
+     document.getElementById("result_dfs").appendChild(result);
+
+    
   }
    
    
@@ -456,6 +511,7 @@ while(true){
       myLoop1(t+1,e+1);           
     } 
     else{
+       document.getElementById('result_dfs').style.display='block';
        childrens=document.getElementsByClassName('children');
             lastparent=document.getElementsByClassName('parent');
      arrow=document.getElementsByClassName("fa fa-long-arrow-down");
@@ -475,53 +531,117 @@ while(true){
   }, speed*100)
 }
 
-
-
-    
-
-
 function myLoop( t ,e,nodes,lines) {  
     var speed=document.getElementById("speed").value;
 
   setTimeout(function() {  
+   
+  if (t==0) {
+     
     
+    block=document.querySelector(`[id_="${0}"]`);
+     block.className="visited_block";
+    document.getElementById("visited_table").appendChild(block.parentElement);
+   
+    children=document.querySelectorAll(`*[id^="0"]`);
+    for (let i = 1; i < children.length; i++) {
 
-    
+       var tr = document.createElement("tr"); 
+        var td=document.createElement("td");
+        td.innerHTML=children[i].getAttributeNode('label').value;
+  
+        var id_ = document.createAttribute("id_");      
+        id_.value = children[i].getAttributeNode('label').value;                        
+        td.setAttributeNode(id_); 
+        tr.appendChild(td);
+        document.getElementById('queue_table').appendChild(tr);
+      
+    }
+
     nodes[0].style.border="3px solid #fa7661";
     nodes[0].style.backgroundColor ="#fa7661";
     
     nodes[0].style.color ="white";
     nodes[0].innerHTML='R';
+    }
     if(t!=0){
-         lines[t-1].style.backgroundColor ="#fa7661";
-   lines[t-1].style.height ="4px";
+  
+    
+     lines[t-1].style.backgroundColor ="#fa7661";
+     lines[t-1].style.height ="4px";
       
 
- nodes[e-1].style.backgroundColor ="#fa7661";
-    nodes[e-1].style.color ="white";
-   nodes[e-1].style.border="4px solid #fa7661"
-   // nodes[e-1].style.backgroundColor ="white";
+      nodes[e-1].style.backgroundColor ="#fa7661";
+      nodes[e-1].style.color ="white";
+      nodes[e-1].style.border="4px solid #fa7661"
+
+      block=document.querySelector(`[id_="${e-1}"]`);
+      block.className="visited_block";
+       document.getElementById("visited_table").appendChild(block.parentElement);
+
+        children=document.querySelectorAll(`*[id^="${e-1}"]`);
+      if (children.length>0) {
+      
+    
+      for (let i = 0; i < children.length; i++) {
+
+       var tr = document.createElement("tr"); 
+        var td=document.createElement("td");
+        td.innerHTML=children[i].getAttributeNode('label').value;
+  
+        var id_ = document.createAttribute("id_");      
+        id_.value = children[i].getAttributeNode('label').value;                        
+        td.setAttributeNode(id_); 
+        tr.appendChild(td);
+        document.getElementById('queue_table').appendChild(tr);
+      
+    }
+
+    }
+  
 
     }
     
+    if(e<document.getElementsByClassName('node').length){
    lines[t].style.backgroundColor ="#e7d9be";
    lines[t].style.height ="8px";
 
     nodes[e].style.backgroundColor ="#f5f5f5";
     nodes[e].style.color ="#fa7661";
-   nodes[e].style.border="4px solid #fa7661"
-  
-   //nodes[e].style.backgroundColor ="#fa7661";
-   ;
-  
+   nodes[e].style.border="4px solid #fa7661";
+
+     var result = document.createElement("span");
+    result.innerHTML= e;
+         result.className="result_bfs";
+
+    document.getElementById("result_bfs").appendChild(result);
+    block=document.querySelector(`[id_="${e}"]`);
+    block.className="current_block";
+    }
 
 
        
 
                   
-    if (t < document.getElementsByClassName('node').length+1) {           
+    if (t < document.getElementsByClassName('node').length-1) {           
       myLoop(t+1,e+1,nodes,lines);           
-    }                      
+    }
+    else{
+
+      table1=document.getElementById('queue');
+      table2=document.getElementById('visited');
+      table1.style.display="none";
+      table2.style.display="none";
+    document.getElementById('result_bfs').style.display='block';
+    var table = document.getElementsByTagName("tr");
+  for (let i = 0; i < table.length; i) {
+   
+   table[i].parentElement.removeChild(table[i]);
+    
+  }
+    }
+    
+            
   }, speed*100)
 }
 
@@ -552,12 +672,27 @@ function hideMain() {
           if (array[i].id!="speed")array[i].style.display="none";
         
     }
-     array=document.getElementsByClassName("run");
+     array=document.getElementsByClassName("dfs");
     for (let i = 0; i < array.length; i++) {
         array[i].style.display="block";
         
     }
-    document.getElementById('speed').style.marginLeft="100px"
-    document.getElementById('speed').style.marginTop="540px"
-    document.getElementById('speedtext').style.marginTop="535px"
+     document.getElementById('speed').style.marginLeft="30%"
+    document.getElementById('speed').style.marginTop="185%"
+    document.getElementById('speedtext').style.marginTop="183%"
+}
+function hideMain1() {
+    array=document.getElementsByClassName("main");
+    for (let i = 0; i < array.length; i++) {
+          if (array[i].id!="speed")array[i].style.display="none";
+        
+    }
+     array=document.getElementsByClassName("bfs");
+    for (let i = 0; i < array.length; i++) {
+        array[i].style.display="block";
+        
+    }
+    document.getElementById('speed').style.marginLeft="30%"
+    document.getElementById('speed').style.marginTop="185%"
+    document.getElementById('speedtext').style.marginTop="183%"
 }
