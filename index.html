@@ -3,11 +3,12 @@
 <head>
    
         
-    <script src="BFS.js"></script>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="style.css"> 
         <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+    <link rel="icon" href="./node.png">
     <title>DFS & BFS</title>
 </head>
 
@@ -76,7 +77,20 @@
         <div id="intro" class="main">
 
             <p >DFS and BFS Visualization</p>
-        </div>
+            <p><span style="font-weight: bold; font-size: 1.1rem;">What is BFS?</span><br><br>
+                BFS is an algorithm that is used to search on a tree or traversing structures. The algorithm visits the tree level by level starting from the root node.
+            </p>
+            <p><span style="font-weight: bold; font-size:  1.1rem;" >
+            What is DFS?</span><br><br>
+DFS is an algorithm for finding or traversing a tree in a depth-ward direction. The execution of the algorithm begins at the root node and explores each branch before backtracking. 
+</p>
+<p>
+   <span style="font-weight: bold; font-size: 1.1rem;"> Time Complexity</span><br><br>
+    The Time complexity of both BFS and DFS will be O(V + E), where V is the number of vertices, and E is the number of Edges.
+</p>
+</div>
+
+
         <div class="edit draw_text" >
             <p style="text-transform: uppercase;">instructions</p>
 
@@ -89,22 +103,25 @@
 
 <input type="range" min="1" max="30" value="10" class="slider main" id="speed"  >
 
-<button onclick="bfs()" class="type main" style=" margin-top: 160%; margin-left: 7%;">BFS</button>
-<button onclick="dfs()" class="type main">DFS</button><br>
+<button onclick="bfs()" class="type main" style=" margin-top: 40%; margin-left: 7%;">BFS Simulation</button>
+<button onclick="dfs()" class="type main">DFS Simulation</button><br>
+
+<button onclick="bfs_skip()" class="type main" style=" margin-top: 3%; margin-left: 7%;">BFS Result</button>
+<button onclick="dfs_skip()" class="type main">DFS Result</button><br>
 
 
 
-<button onclick="cancel()" s id="cancel" class="edit   type" >Done</button>
-<button onclick="delete_tree()"  class="edit type">Clear</button>
+<button onclick="cancel()"  style="padding-left: 2%;" id="cancel" class="edit   " >Done</button>
+<button onclick="delete_tree()" style="padding-left: 2%;" class="edit ">Clear</button>
 </div>
-<div id="area" class="body" >
-    <button onclick="finish()" class="run dfs bfs"  id="finish" >Cancel</button>
+<div  id="area" class="body" >
+    <button onclick="finish()"  class="run dfs bfs"  id="finish" >Cancel</button>
 
     <button onclick="draw()"  id="draw" class="main">Draw Tree</button>
 
     <img width="600px" src="./grid.png" alt="" class="body">
-    <p style="margin-top:56%; color: #3d3d3df8;" class="edit" ><i class="fa fa-circle-o" aria-hidden="true">&nbsp;&nbsp;To create a node, click anywhere on the grid area</i></p>
-    <p style=" color: #3d3d3df8;" class="edit"><i class="fa fa-expand" aria-hidden="true">&nbsp;&nbsp;To create an edge, click on the parent node, keep holding the mouse and then release it on its child
+    <p style="margin-top:40.5%; color: #3d3d3df8;" class="edit" ><i class="fa fa-circle-o" aria-hidden="true">&nbsp;&nbsp;To create a node, click anywhere on the grid area</i></p>
+    <p style=" color: #3d3d3df8; margin-top:42%; " class="edit"><i class="fa fa-expand" aria-hidden="true">&nbsp;&nbsp;To create an edge, click on the parent node, keep holding the mouse and then release it on its child
     </i></p>
 
 </div>

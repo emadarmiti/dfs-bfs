@@ -23,7 +23,7 @@ body ,html{
     background: rgb(245,89,81);
     background: linear-gradient(346deg, rgba(245,89,81,1) 0%, rgba(255,231,174,1) 100%);
     overflow: hidden;
-   
+   position: relative;
   }
  .node{
  
@@ -60,16 +60,14 @@ body ,html{
  
  button{
  background-color: #f5f5f5;
-    width: 100px;
-    min-width: 100px;
-    height: 40px;
-    min-height: 40px;
+    width: 43%;
+   
+    height: 6%;
     border: none;
     border-radius: 9px;
     cursor: pointer;
-   margin: auto;
    display: block;
-  
+  text-align: center;
     
     transition: 0.3s;
     border-radius: 26px 26px 26px 26px;
@@ -84,12 +82,12 @@ body ,html{
     outline:none;
     font-weight: bold;
  }
- button:nth-last-child(5),button:nth-last-child(2){
+ button:nth-last-child(5),button:nth-last-child(2),button:nth-last-child(8){
    
    
    border-radius: 26px 0px 0px 26px;
  }
- button:nth-last-child(4),button:nth-last-child(1){
+ button:nth-last-child(4),button:nth-last-child(1),button:nth-last-child(7){
 
    
   border-radius: 0px 26px 26px 0px;
@@ -107,40 +105,33 @@ body ,html{
    color: white;
    border: none;
  }
- .type{
-   width: auto;
  
-  display: inline;
-  padding-left: 63px;
-  padding-right: 63px;
- }
-
  #speedtext{
    font-weight: bold;
    position: absolute;
-   margin-top: 149%;
-   margin-left: 27px;
+   margin-top: 28.3%;
+   margin-left: 7%;
    font-size: large;
    transition:  .4s;
  }
  #speed{
-   margin-top: 150%;
+   margin-top: 30%;
 border-radius: 10px;
     position: absolute;
-
-margin-left: 100px;
+    transform: scale(-1, 1);
+margin-left: 30%;
 border: 1px solid black;
    
  }
  .slider {
     -webkit-appearance: none;
-    width: 216px;
-    height: 10px;
+    width: 64%;
+    height: 1.5%;
     background:#252525; 
     outline: none;
     position: absolute;
     
-    margin-left: 10px;
+    margin-left: 1.5%;
    cursor: pointer;
     transition:  .4s;
    
@@ -177,12 +168,12 @@ border: 1px solid black;
 
 
   #sidebar{
-
+    overflow-y: auto;
     height: 90.5%;
-    width: 355px;
-    margin-top: 23px;
+    width: 23%;
+    margin-top: 1.5%;
     border-radius: 8px;
-    margin-left: 23px;
+    margin-left: 1.5%;
     box-sizing: border-box;
     background-color: #525252f8;
     position: absolute;
@@ -194,27 +185,27 @@ border: 1px solid black;
    
   }
   
-  .edit{
+  .edit {
     
     display: none;
-    padding-left: 50px;
+    padding-left: 5%;
   }
 
  
 
   #bottombar{
 width: 100%;
-height: 20%;
-padding-left: 05px;
+height: 4%;
+
 box-sizing: border-box;
-position: absolute;
+position: relative;
 z-index: 3;
 background-color: #3d3d3d;
 color: rgb(255, 255, 255);
-padding-top: 3px;
+padding-top: 0.3%;
 text-align: center;
 font-size: 13px;
-margin-top: 48%;
+margin-top:1.5% ;
   }
 
   #area{
@@ -224,26 +215,26 @@ margin-top: 48%;
     height: 90.5%;
     width: 73.2%;
     border: 1px solid black;
-    margin-left: 387px;
-    margin-top: 23px;
-    position: absolute;
+    margin-left:25%;
+    margin-top: 1.5%;
     background-color: #f5f5f5;
-    position: absolute;
     border-radius: 0px 26px 26px 0px;
     
     border: 0px solid #000000;
 
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.418);
-   overflow: hidden;
-    background-size: 600px 300px;
+   overflow: auto;
     
   }
+  .type {
+    display: inline;
   
+}
   
   img{
 
-    height: 100%;
-    width: 120%;
+    height: 90%;
+    width: 80%;
     opacity: 0.1;
     display: none;
     position: absolute;
@@ -252,7 +243,7 @@ margin-top: 48%;
   #area p{
     position: absolute;
     z-index: 2;
-    margin-top:58%;
+    margin-top:57%;
     margin-left: -3%;
     font-size: 90%;
   }
@@ -266,8 +257,8 @@ margin-top: 48%;
 
   .draw_text p{
 
-    margin: 1px 30px;
-    padding: 10px;
+    margin: 1px 3%;
+    padding: 3%;
     background-color: #fa7661;
     color: white;
     text-align: center;
@@ -277,7 +268,7 @@ margin-top: 48%;
   .draw_text p:first-child{
 
     width: 89%;
-  padding: 10px;
+  padding: 2.6%;
   background-color: #fa7661;
   color: #ffffff;
   text-align: center;
@@ -307,9 +298,9 @@ margin-top: 48%;
        transition: 0.3s;
        border-radius: 26px 26px 26px 26px;
        position: absolute;
-       margin-top: 55%;
+       margin-top: 40%;
 
-       left: 40%;
+       left: 50%;
        width: 20%;
        box-shadow: 0 0 10px rgba(0,0,0,0.6);
     -moz-box-shadow: 0 0 10px rgba(0,0,0,0.6);
@@ -337,15 +328,15 @@ position: absolute;
 
 }
 #tracking_code #header,#tracking_code1 #header {
-  margin: 1px 30px;
+  margin: 1px 3%;
   width: 89%;
-  padding: 10px;
+   padding: 2.6%;;
   background-color: #fa7661;
   color: #ffffff;
   text-align: center;
   border-radius: 20px 0px 0px 0px;
-  margin-left:10px;
- margin-top: 10px;
+  margin-left:3%;
+ margin-top: 3%;
  font-size: larger;
    
   
@@ -489,15 +480,18 @@ td{
   
 
 }
+
 #finish{
 
 
 position: absolute;
 width: 20%;
-margin-top: 57%;
+margin-top: 40%;
 border-radius: 26px 26px 26px 26px;
-margin-left: 39%;
+left: 50%;
+
 }
+
 #result_bfs{
   font-size: smaller;
   display: none;
@@ -526,17 +520,31 @@ margin-left: 39%;
   margin-left: 7%; 
   margin-top: 125%
 }
-
 #intro p{
+ 
+ margin-top: 5%;
+  background-color: rgb(122, 122, 122);;
+  color: rgb(255, 255, 255);
+  width: 90%;
+  margin-left: 3%;
+  border-radius: 26px  26px  26px  26px;
+  
+  padding: 2%;
+  text-align: center;
+  font-size: 0.8rem;
+  
+}
+#intro p:first-child{
  
  
   width: 89%;
-  padding: 10px;
+  
+  padding: 3%;;
   background-color: #fa7661;
   color: #ffffff;
   text-align: center;
   border-radius: 20px 0px 0px 0px;
   margin-left:3%;
   margin-top: 3%;
- font-size: larger;
+ font-size: 1.3rem;
 }

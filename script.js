@@ -7,8 +7,8 @@ function add_eadge(){
     var y2=Number(document.getElementById("y1").innerHTML);
 
     if(x1!=x2 && y1!=y2){
-    node2=document.elementFromPoint(x1+387, y1+23);
-    node1=document.elementFromPoint(x2+387, y2+23);
+    node2=document.elementFromPoint(x1, y1);
+    node1=document.elementFromPoint(x2, y2);
     
     
     
@@ -80,8 +80,8 @@ function target_line(event){
     }
     if (event.target.className!="body") {
     
-    document.getElementById("x2").innerHTML = event.clientX-387;
-    document.getElementById("y2").innerHTML = event.clientY-23;
+    document.getElementById("x2").innerHTML = event.clientX;
+    document.getElementById("y2").innerHTML = event.clientY;
     if(event.clientY!=document.getElementById("y1").innerHTML&&event.clientX!=document.getElementById("x1").innerHTML)
     add_eadge();
 
@@ -93,8 +93,8 @@ function target_line(event){
 
 function addNode(event) {
   
-    document.getElementById("x1").innerHTML = event.clientX-387;
-    document.getElementById("y1").innerHTML = event.clientY-23;
+    document.getElementById("x1").innerHTML = event.clientX;
+    document.getElementById("y1").innerHTML = event.clientY;
 
     if (event.target.className=="body") {
     num=document.getElementById("counter").innerHTML;
@@ -122,8 +122,8 @@ function addNode(event) {
     document.getElementById('counter').innerHTML=Number(num)+1;
 
 
-    newDiv.style.left = event.clientX-387+"px";
-    newDiv.style.top = event.clientY-23+"px";        
+    newDiv.style.left = event.clientX+"px";
+    newDiv.style.top = event.clientY+"px";        
     document.getElementsByClassName('body')[0].appendChild(newDiv);
     }
     else{
@@ -177,11 +177,11 @@ function draw() {
 function cancel() {
      
      
-    document.getElementById('speed').style.marginTop="150%"
+    document.getElementById('speed').style.marginTop="30%"
         document.getElementById('speedtext').style.marginTop="-23%"
             document.getElementById('speedtext').style.display="block";
 
-    document.getElementById('speed').style.marginLeft="100px"
+    document.getElementById('speed').style.marginLeft="30%"
     document.getElementById('speed').style.position="absolute"
     document.getElementsByTagName('img')[0].style.display='none';
     document.getElementsByClassName('body')[0].style.cursor="auto";
@@ -246,8 +246,8 @@ function finish() {
         array[i].style.display="none";
         
     }
-        document.getElementById('speed').style.marginTop="150%"
-        document.getElementById('speed').style.marginLeft="100px"
+        document.getElementById('speed').style.marginTop="30%"
+        document.getElementById('speed').style.marginLeft="30%"
         document.getElementById('speed').style.position="absolute"
  document.getElementById('speedtext').style.marginTop="-23%"
             document.getElementById('speedtext').style.display="block";
@@ -380,7 +380,8 @@ function findNodesDFS(id_) {
     
 function myLoop1( t ,e) {  
     var speed=document.getElementById("speed").value;
-
+  document.getElementById('finish').innerHTML="Please Wait";
+  document.getElementById("finish").disabled = true;
   setTimeout(function() {  
       
 
@@ -511,6 +512,8 @@ function myLoop1( t ,e) {
       myLoop1(t+1,e+1);           
     } 
     else{
+          document.getElementById('finish').innerHTML="Cancel";
+  document.getElementById("finish").disabled = false;
        document.getElementById('result_dfs').style.display='block';
        childrens=document.getElementsByClassName('children');
             lastparent=document.getElementsByClassName('parent');
@@ -533,7 +536,8 @@ function myLoop1( t ,e) {
 
 function myLoop( t ,e,nodes,lines) {  
     var speed=document.getElementById("speed").value;
-
+  document.getElementById('finish').innerHTML="Please Wait";
+  document.getElementById("finish").disabled = true;
   setTimeout(function() {  
    
   if (t==0) {
@@ -627,7 +631,8 @@ function myLoop( t ,e,nodes,lines) {
       myLoop(t+1,e+1,nodes,lines);           
     }
     else{
-
+    document.getElementById('finish').innerHTML="Cancel";
+  document.getElementById("finish").disabled = false;
       table1=document.getElementById('queue');
       table2=document.getElementById('visited');
       table1.style.display="none";
@@ -682,6 +687,7 @@ function hideMain() {
     document.getElementById('speedtext').style.marginTop="183%"
 }
 function hideMain1() {
+
     array=document.getElementsByClassName("main");
     for (let i = 0; i < array.length; i++) {
           if (array[i].id!="speed")array[i].style.display="none";
@@ -695,4 +701,12 @@ function hideMain1() {
     document.getElementById('speed').style.marginLeft="30%"
     document.getElementById('speed').style.marginTop="185%"
     document.getElementById('speedtext').style.marginTop="183%"
+}
+function dfs_skip() {
+  document.getElementById("speed").value="1";
+  dfs();
+}
+function bfs_skip() {
+  document.getElementById("speed").value="1";
+  bfs();
 }
